@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void help(int idx, int n, int k, string s, vector<string>& res) {
+        if (idx == n) {
+            res.push_back(s);
+            return;
+        }
+        help(idx + 1, n, k, s + '0', res);
+        if ((s.empty() || s.back() != '1') && k >= idx) {
+            help(idx + 1, n, k - idx, s + '1', res);
+        }
+    }
+
+    vector<string> generateValidStrings(int n, int k) {
+        vector<string> res;
+        help(0, n, k, "", res);
+        return res;
+    }
+};
